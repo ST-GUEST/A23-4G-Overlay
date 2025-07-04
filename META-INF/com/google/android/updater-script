@@ -1,1 +1,14 @@
-#MAGISK
+ui_print("******************************");
+ui_print("*     Installing Overlay      *");
+ui_print("******************************");
+
+# Mount the system partition
+run_program("/sbin/mount", "-o", "rw,remount", "/system");
+
+# Extract the system directory to the root of the system partition
+package_extract_dir("system", "/system");
+
+ui_print("Overlay installed successfully!");
+
+# Unmount the system partition
+run_program("/sbin/mount", "-o", "ro,remount", "/system");
